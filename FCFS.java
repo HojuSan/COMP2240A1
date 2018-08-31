@@ -20,8 +20,6 @@ public class FCFS {
         tempPro.setExecute(execute);
 
         pro.add(tempPro);
-
-
     }
 
     public void addDis(int num)

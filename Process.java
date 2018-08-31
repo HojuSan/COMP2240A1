@@ -14,6 +14,8 @@ public class Process {
     private int tr;
     //waiting time
     private int wt;
+    //execution time left
+    private int etl;
 
     // constructor
     public Process() 
@@ -23,6 +25,7 @@ public class Process {
         execute = 0;
         tr = 0;
         wt = 0;
+        etl = 0;
     }
 
     // getters
@@ -46,6 +49,10 @@ public class Process {
     {
         return wt;
     }
+    public int getEtl()
+    {
+        return etl;
+    }
 
     // setters
     public void setId(String id) 
@@ -67,5 +74,9 @@ public class Process {
     public void setWt(int wt) 
     {
         this.wt = wt;
+    }
+    public void setEtl(int etl)
+    {
+        this.etl = etl;
     }
 }

@@ -2,18 +2,29 @@
 Starting anew
 */
 
-import java.lang.*;
-import java.io.*;
+import java.util.List;
+import java.util.LinkedList;
+
 
 public class Test
 {
     private static FCFS fcfs;
+    private static RR rr;
 
     public static void main(String[] args)
     {
 
         fcfs = new FCFS();
+        rr = new RR();
 
+        rr.addDis(1);
+        rr.addProcess("p1",0,10);
+        rr.addProcess("p2",0,1);
+        rr.addProcess("p3",0,2);
+        rr.addProcess("p4",0,1);
+        rr.addProcess("p5",0,5);
+        rr.doStuff();
+/*
         fcfs.addDis(1);
         fcfs.addProcess("p1",0,10);
         fcfs.addProcess("p2",0,1);
@@ -21,7 +32,7 @@ public class Test
         fcfs.addProcess("p4",0,1);
         fcfs.addProcess("p5",0,5);
         fcfs.doStuff();
-        
+*/        
 
         /*
         int dis = 0;
