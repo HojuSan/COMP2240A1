@@ -15,7 +15,11 @@ public class Test
         fcfs = new FCFS();
 
         fcfs.addDis(1);
-        fcfs.addProcess("p1",10,2);
+        fcfs.addProcess("p1",0,10);
+        fcfs.addProcess("p2",0,1);
+        fcfs.addProcess("p3",0,2);
+        fcfs.addProcess("p4",0,1);
+        fcfs.addProcess("p5",0,5);
         fcfs.doStuff();
         
 

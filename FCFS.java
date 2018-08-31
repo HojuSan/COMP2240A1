@@ -1,14 +1,14 @@
 import java.util.List;
+import java.util.LinkedList;
 
 public class FCFS {
 
     private List<Process> pro;
     private int dis;
-    private int counter;
     // constructor
     public FCFS() 
     {
-        counter = 0;
+        pro = new LinkedList<Process>();
     }
 
     //Setting the process into a list
@@ -21,7 +21,6 @@ public class FCFS {
 
         pro.add(tempPro);
 
-        counter++;
 
     }
 
@@ -32,21 +31,28 @@ public class FCFS {
 
     public void doStuff()
     {
+        int counter = pro.size()-1;
         int num = 0;
         System.out.println("FCFS:");
 
         for (int i = 0; i <= counter; i++)
         {
             num += dis;
+            pro.get(i).setWt(num);
+
             System.out.println("T" + num + ":" + pro.get(i).getId());
+
             num += pro.get(i).getExecute();
+            pro.get(i).setTr(num);
        
         }
+
+        System.out.println("          ");
 
         System.out.println("Process Turnaround Time Waiting Time");
         for (int i = 0; i <= counter; i++)
         {
-            System.out.println(pro.get(i).getId() + "  " + pro.get(i).getTr() + "      " + pro[i].getWt());
+            System.out.println(pro.get(i).getId() + "       " + pro.get(i).getTr() + "               " + pro.get(i).getWt());
         }
     }
 
