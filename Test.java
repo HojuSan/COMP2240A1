@@ -2,12 +2,24 @@
 Starting anew
 */
 
+import java.lang.*;
 import java.io.*;
 
 public class Test
 {
+    private static FCFS fcfs;
+
     public static void main(String[] args)
     {
+
+        fcfs = new FCFS();
+
+        fcfs.addDis(1);
+        fcfs.addProcess("p1",10,2);
+        fcfs.doStuff();
+        
+
+        /*
         int dis = 0;
         String id = "";
         int ari = 0;
@@ -30,7 +42,7 @@ public class Test
         {
             System.err.println("Error: " + e.getMessage());
         }
-/*
+
         try
         {
             // Open the file that is the first 
@@ -55,9 +67,10 @@ public class Test
         {
             System.err.println("Error: " + e.getMessage());
         }
-*/
+        */
 
     //main
     }
+
 //Test
 }
