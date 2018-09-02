@@ -78,18 +78,12 @@ public class RR {
 
                     //set left over runtime
                      pro.get(i).setRun(pro.get(i).getRun() - pro.get(i).getSplice());
-
-                     //set wait time
-//                     pro.get(i).setWt(pro.get(i).getWt() - (pro.get(i).getExecute() - pro.get(i).getRun()));
                 }
 
                 //less than splice so just finish it
                 else if(pro.get(i).getSplice() > pro.get(i).getRun())
                 {
                     num += pro.get(i).getRun();
-
-                    //set wait time
-//                   pro.get(i).setWt(pro.get(i).getWt() - (pro.get(i).getExecute() - pro.get(i).getRun()));
 
                     //set left over runtime
                     pro.get(i).setRun(0);
