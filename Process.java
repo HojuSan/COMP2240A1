@@ -16,6 +16,8 @@ public class Process {
     private int wt;
     //execution time left
     private int etl;
+    //splicing interval
+    private int splice;
 
     // constructor
     public Process() 
@@ -26,6 +28,7 @@ public class Process {
         tr = 0;
         wt = 0;
         etl = 0;
+        splice = 4;
     }
 
     // getters
@@ -53,6 +56,10 @@ public class Process {
     {
         return etl;
     }
+    public int getSplice()
+    {
+        return splice;
+    }
 
     // setters
     public void setId(String id) 
@@ -78,5 +85,9 @@ public class Process {
     public void setEtl(int etl)
     {
         this.etl = etl;
+    }
+    public void setSplice(int splice)
+    {
+        this.splice = splice;
     }
 }
