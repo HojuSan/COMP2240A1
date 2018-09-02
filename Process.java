@@ -5,7 +5,8 @@ Student No: c3244203
 Date:       09/08/18
 Description: has all the details about the process
 */
-public class Process {
+public class Process implements Comparable<Process>
+{
     //variables
     private String id;
     private int arrival;
@@ -14,8 +15,8 @@ public class Process {
     private int tr;
     //waiting time
     private int wt;
-    //execution time left
-    private int etl;
+    //priority
+    private int pri;
     //splicing interval
     private int splice;
     //runtime
@@ -29,7 +30,7 @@ public class Process {
         execute = 0;
         tr = 0;
         wt = 0;
-        etl = 0;
+        pri = 0;
         run = 0;
         splice = 4;
     }
@@ -55,9 +56,9 @@ public class Process {
     {
         return wt;
     }
-    public int getEtl()
+    public int getPri()
     {
-        return etl;
+        return pri;
     }
     public int getSplice()
     {
@@ -76,6 +77,7 @@ public class Process {
     public void setArrival(int arrival) 
     {
         this.arrival = arrival; 
+//        setComparator(arrival);
     }
     //special since the actual execution time
     //and how much is left is different
@@ -92,9 +94,9 @@ public class Process {
     {
         this.wt = wt;
     }
-    public void setEtl(int etl)
+    public void setPri(int pri)
     {
-        this.etl = etl;
+        this.pri = pri;
     }
     public void setSplice(int splice)
     {
@@ -104,4 +106,34 @@ public class Process {
     {
         this.run = run;
     }
+ /*   
+    public int getComparator()
+    {
+        return comparator;
+    }
+
+    
+    public int compareTo(Process p1)
+    {
+        if (p1.getComparator < this.comparator)
+        {
+            return 1;
+        }
+        else if (p1.getComparator() ==  this.comparator)
+        {
+            if(p1.getId().compareTo(this.id)<0)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            return -1;
+        }
+    }
+*/
 }

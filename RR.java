@@ -2,7 +2,7 @@
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Queue;
-
+import java.util.Comparator;
 
 public class RR 
 {
@@ -41,19 +41,23 @@ public class RR
     {
         int counter1 = jro.size()-1;
         int counter2 = jro.size()-1;
-        int counter3 = jro.size()-1; 
+        int counter3 = jro.size()-1;
         int num = 0;
         int i = 0;
         System.out.println("RR:");
 
-        //Arrivals
+        System.out.println("size jro "+ jro.size());
+        System.out.println(jro.get(3).getArrival() + " "+jro.get(4).getArrival());
+//        //Arrivals
+//      ## be warned myself be careful when you set counters
         for(int t = 0; t <= counter1; t++)
         {
-            if(jro.get(t).getArrival() <= num)
+
+            if(jro.get(0).getArrival() <= num)
             {
-                pro.add(jro.get(t));
-                jro.remove(t);
-                counter1--;
+                pro.add(jro.get(0));
+                jro.remove(0);
+                System.out.println("Yeet "+ t);
             }
         }
 
@@ -63,59 +67,59 @@ public class RR
 
             num += dis;
 
-
-            for(int t = 0; t <= counter1; t++)
-            {
-                if(jro.get(t).getArrival() <= num)
-                {
-                    pro.add(jro.get(t));
-                    jro.remove(t);
-                    counter1--;
-                }
-            }
-
             //Setting the Waiting time
             //if left over run and execute the same, first time running
-            if(pro.get(i).getRun() == pro.get(i).getExecute())
+            if(pro.get(0).getRun() == pro.get(0).getExecute())
             {
                 //get starting wait time and additional waiting time
-                pro.get(i).setWt(num - pro.get(i).getArrival());
+                pro.get(0).setWt(num - pro.get(0).getArrival());
                 //System.out.println(pro.get(i).getWt() +"  waiting time of "+ pro.get(i).getId());
             }
             //second time running
             else
             {
-                pro.get(i).setWt((num - pro.get(i).getArrival()) - (pro.get(i).getExecute() - pro.get(i).getRun()));
+                pro.get(0).setWt((num - pro.get(0).getArrival()) - (pro.get(0).getExecute() - pro.get(0).getRun()));
                 //System.out.println(pro.get(i).getWt() +"  waiting time of "+ pro.get(i).getId());
             }
 
             //simple printing
-            System.out.println("T" + num + ":" + pro.get(i).getId());
+            System.out.println("T" + num + ":" + pro.get(0).getId());
 
+            
             //Splice is smaller than run
-            if(pro.get(i).getSplice() < pro.get(i).getRun())
+            if(pro.get(0).getSplice() < pro.get(0).getRun())
             {
-                num += pro.get(i).getSplice();
+                num += pro.get(0).getSplice();
 
                 //set left over runtime
-                pro.get(i).setRun(pro.get(i).getRun() - pro.get(i).getSplice());
+                pro.get(0).setRun(pro.get(0).getRun() - pro.get(0).getSplice());
             }
 
             //less than splice so just finish it
-            else if(pro.get(i).getSplice() > pro.get(i).getRun())
+            else if(pro.get(0).getSplice() > pro.get(0).getRun())
             {
-                num += pro.get(i).getRun();
+                num += pro.get(0).getRun();
 
                 //set left over runtime
-                pro.get(i).setRun(0);
+                pro.get(0).setRun(0);
 
             }
 
-            //setting total runtime
-            pro.get(i).setTr(num - pro.get(i).getArrival());
+            //if no more processes left just finish it
+            if (pro.size() == 1 && jro.isEmpty())
+            {
+                num += pro.get(0).getRun();
 
-            //Arrivals
-            for(int t = 0; t <= counter1; t++)
+                //set left over runtime
+                pro.get(0).setRun(0);
+            }
+
+            //setting total runtime
+            pro.get(0).setTr(num - pro.get(0).getArrival());
+
+
+//            //Arrivals
+            for(int t = 0; t <= jro.size()-1; t++)
             {
                 if(jro.get(t).getArrival() <= num)
                 {
@@ -124,33 +128,31 @@ public class RR
                     counter1--;
                 }
             }
-        
 
-            //has finished execution so push out of ready que into finished que
-            if(pro.get(i).getRun() <= 0)
+            //move to back of queue
+            if(!pro.isEmpty())
             {
-                //push process to the back of the Queue
-                bro.add(pro.get(i));
-                //remove process from Queue
-                pro.remove(i);
-                i--;
-                counter3--;
+                pro.add(pro.get(0));
+                pro.remove(pro.get(0));
             }
 
-            if(pro.size() == (i+1))
-            {
-                i = 0;
+                        //deletes finished processes
+            for(int f = 0; f <= pro.size()-1; f++)
+            {   
+                //has finished execution so push out of ready que into finished que
+                if(pro.get(f).getRun() == 0)
+                {
+                    //push process to the back of the Queue
+                    bro.add(pro.get(f));
+                    //remove process from Queue
+                    pro.remove(f);
+                }
             }
-
-            else
-            {
-                i++;
-            }
-
-
         
         }
 
+//sorting figure it out
+//        bro.sort(bro);
 
         System.out.println("          ");
 
