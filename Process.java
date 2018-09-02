@@ -18,6 +18,8 @@ public class Process {
     private int etl;
     //splicing interval
     private int splice;
+    //runtime
+    private int run;
 
     // constructor
     public Process() 
@@ -28,6 +30,7 @@ public class Process {
         tr = 0;
         wt = 0;
         etl = 0;
+        run = 0;
         splice = 4;
     }
 
@@ -60,6 +63,10 @@ public class Process {
     {
         return splice;
     }
+    public int getRun()
+    {
+        return run;
+    }
 
     // setters
     public void setId(String id) 
@@ -70,9 +77,12 @@ public class Process {
     {
         this.arrival = arrival; 
     }
+    //special since the actual execution time
+    //and how much is left is different
     public void setExecute(int execute) 
     {
         this.execute = execute;
+        this.run = execute;
     }
     public void setTr(int tr) 
     {
@@ -89,5 +99,9 @@ public class Process {
     public void setSplice(int splice)
     {
         this.splice = splice;
+    }
+    public void setRun(int run)
+    {
+        this.run = run;
     }
 }
