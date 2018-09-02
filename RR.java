@@ -42,11 +42,13 @@ public class RR {
         //System.out.println(pro.size());
 
         //Runs while que is not empty
-        while (counter1 != 0)
+        while (pro.size() != 0)
         {
             num += dis;
 
-            System.out.println("que size " + pro.size());
+//            System.out.println("");
+//            System.out.println("que size: " + pro.size() + "  index: " + i);
+
 
             //runs while 
             if(pro.get(i).getRun() > 0)
@@ -57,37 +59,61 @@ public class RR {
                 //simple printing
                 System.out.println("T" + num + ":" + pro.get(i).getId());
 
-                //in NRR setSplice reduced by one with an if else statement
-                num += pro.get(i).getSplice();
+                //Splice is smaller than run
+                if(pro.get(i).getSplice() < pro.get(i).getRun())
+                {
+                    num += pro.get(i).getSplice();
 
-                //set left over runtime
-                pro.get(i).setRun(pro.get(i).getRun()-pro.get(i).getSplice());
+                    //set left over runtime
+                     pro.get(i).setRun(pro.get(i).getRun() - pro.get(i).getSplice());
+
+                     //set wait time
+                     pro.get(i).setWt(pro.get(i).getWt() - pro.get(i).getSplice());
+                }
+
+                //less than splice so just finish it
+                else if(pro.get(i).getSplice() > pro.get(i).getRun())
+                {
+                    num += pro.get(i).getRun();
+
+                    //set wait time
+                    pro.get(i).setWt(pro.get(i).getWt() - pro.get(i).getRun());
+
+                    //set left over runtime
+                    pro.get(i).setRun(0);
+
+                }
 
                 //setting total runtime
                 pro.get(i).setTr(num);
-            }
 
-            //has finished execution so push out of ready que into finished que
-            if(pro.get(i).getRun() <= 0)
-            {
-                //push process to the back of the Queue
-                bro.add(pro.get(i));
-                //remove process from Queue
-                pro.remove(i);
-                i--;
-                counter1--;
-            }
+                //has finished execution so push out of ready que into finished que
+                if(pro.get(i).getRun() <= 0)
+                {
+                    //push process to the back of the Queue
+                    bro.add(pro.get(i));
+                    //remove process from Queue
+                    pro.remove(i);
+                    i--;
+                    counter1--;
+                }
 
-            i++;
+    //           System.out.println("");
+    //           System.out.println("que size: " + pro.size() + "  index: " + i);
+                i++;
 
-            if(counter1 == i)
-            {
-                i = 0;
+    //           System.out.println("");
+    //           System.out.println("que size: " + pro.size() + "  index: " + i);
+                if(pro.size() == i)
+                {
+                    i = 0;
+                }
             }
        
         }
 
-        System.out.println("que size " + pro.size());
+        System.out.println("que size " + pro.size() + "index " + i);
+        System.out.println("");
 
         System.out.println("          ");
 
