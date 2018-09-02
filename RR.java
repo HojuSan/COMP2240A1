@@ -53,8 +53,20 @@ public class RR {
             //runs while 
             if(pro.get(i).getRun() > 0)
             {
-                //get starting wait time and additional waiting time
-                pro.get(i).setWt(pro.get(i).getWt() + num);
+                //Setting the Waiting time
+                //if left over run and execute the same, first time running
+                if(pro.get(i).getRun() == pro.get(i).getExecute())
+                {
+                    //get starting wait time and additional waiting time
+                    pro.get(i).setWt(pro.get(i).getWt() + num);
+                    System.out.println(pro.get(i).getWt() +"  waiting time of "+ pro.get(i).getId());
+                }
+                //second time running
+                else
+                {
+                    pro.get(i).setWt(num - (pro.get(i).getExecute() - pro.get(i).getRun()));
+                    System.out.println(pro.get(i).getWt() +"  waiting time of "+ pro.get(i).getId());
+                }
 
                 //simple printing
                 System.out.println("T" + num + ":" + pro.get(i).getId());
@@ -68,7 +80,7 @@ public class RR {
                      pro.get(i).setRun(pro.get(i).getRun() - pro.get(i).getSplice());
 
                      //set wait time
-                     pro.get(i).setWt(pro.get(i).getWt() - pro.get(i).getSplice());
+//                     pro.get(i).setWt(pro.get(i).getWt() - (pro.get(i).getExecute() - pro.get(i).getRun()));
                 }
 
                 //less than splice so just finish it
@@ -77,7 +89,7 @@ public class RR {
                     num += pro.get(i).getRun();
 
                     //set wait time
-                    pro.get(i).setWt(pro.get(i).getWt() - pro.get(i).getRun());
+//                   pro.get(i).setWt(pro.get(i).getWt() - (pro.get(i).getExecute() - pro.get(i).getRun()));
 
                     //set left over runtime
                     pro.get(i).setRun(0);
@@ -86,28 +98,28 @@ public class RR {
 
                 //setting total runtime
                 pro.get(i).setTr(num);
+            }
 
-                //has finished execution so push out of ready que into finished que
-                if(pro.get(i).getRun() <= 0)
-                {
-                    //push process to the back of the Queue
-                    bro.add(pro.get(i));
-                    //remove process from Queue
-                    pro.remove(i);
-                    i--;
-                    counter1--;
-                }
+            //has finished execution so push out of ready que into finished que
+            if(pro.get(i).getRun() <= 0)
+            {
+                //push process to the back of the Queue
+                bro.add(pro.get(i));
+                //remove process from Queue
+                pro.remove(i);
+                i--;
+                counter1--;
+            }
 
-    //           System.out.println("");
-    //           System.out.println("que size: " + pro.size() + "  index: " + i);
-                i++;
+//           System.out.println("");
+//           System.out.println("que size: " + pro.size() + "  index: " + i);
+            i++;
 
-    //           System.out.println("");
-    //           System.out.println("que size: " + pro.size() + "  index: " + i);
-                if(pro.size() == i)
-                {
-                    i = 0;
-                }
+//           System.out.println("");
+//           System.out.println("que size: " + pro.size() + "  index: " + i);
+            if(pro.size() == i)
+            {
+                i = 0;
             }
        
         }
