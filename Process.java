@@ -5,7 +5,7 @@ Student No: c3244203
 Date:       09/08/18
 Description: has all the details about the process
 */
-public class Process implements Comparable<Process>
+public class Process  //implements Comparable<Process>
 {
     //variables
     private String id;

@@ -1,8 +1,10 @@
 
+import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Comparator;
+
 
 public class RR 
 {
@@ -35,7 +37,6 @@ public class RR
     {
         dis = num;
     }
-
 
     public void doStuff()
     {
@@ -151,8 +152,9 @@ public class RR
         
         }
 
-//sorting figure it out
-//        bro.sort(bro);
+        //sorting figure it out
+        Comparator empNameComparator = Comparator.comparing(Process::getId);
+        Collections.sort(bro, empNameComparator);
 
         System.out.println("          ");
 
@@ -160,7 +162,7 @@ public class RR
 
         for (int j = 0; j <= counter2; j++)
         {
-            System.out.println(bro.get(j).getId() + "       " + bro.get(j).getTr() + "               " + bro.get(j).getWt());
+            System.out.println(bro.get(j).getId() + "       " + bro.get(j).getTr() + "                 " + bro.get(j).getWt());
         }
 
     }
