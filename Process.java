@@ -19,7 +19,7 @@ public class Process  //implements Comparable<Process>
     private int pri;
     //splicing interval
     private int splice;
-    //runtime
+    //whats left to run
     private int run;
 
     // constructor
