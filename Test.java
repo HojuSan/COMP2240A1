@@ -20,7 +20,7 @@ public class Test
         rr = new RR();
         nrr = new NRR();
         fb = new FB();
-/*
+
         fb.addDis(1);
         fb.addProcess("p1",0,10);
         fb.addProcess("p2",0,1);

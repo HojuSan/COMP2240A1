@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.stream.IntStream;
 
+import javax.lang.model.util.ElementScanner6;
+
 
 public class FB 
 {
@@ -82,20 +84,28 @@ public class FB
 
         //
         //Runs while both que is not empty
-        while (bro.size() <= counterblah)
+        while (bro.size() < counterblah)
         {
-            num += dis;
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////here            
             //checks first priority queue if its empty
-            if(!pro.get(0).isEmpty())
+            //or reached end of the list but processes haven't finished
+            for(int re = 0; re <= t; re++)
             {
-                t = 0;
+                if(!pro.get(0).isEmpty() || (t==5 && bro.size() < counterblah))
+                {
+                    t = 0;
+                    break;
+                }               
+                
             }
 
-            //priority que 0 -4 which is in fcsm
+
             //if the queue is not empty go through it
             if (!pro.get(t).isEmpty())
             {
+                num += dis;
+
+                //first time running
                 if(pro.get(t).peek().getRun() == pro.get(t).peek().getExecute())
                 {
                     pro.get(t).peek().setWt(num - pro.get(t).peek().getArrival());
@@ -106,45 +116,125 @@ public class FB
                     pro.get(t).peek().setWt((num - pro.get(t).peek().getArrival()) - (pro.get(t).peek().getExecute() - pro.get(t).peek().getRun()));
                 }
 
+                System.out.println("its in que "+ t);               
                 //simple printing
                 System.out.println("T" + num + ":" + pro.get(t).peek().getId());
 
                 //execute process
+                //Splice is smaller than run
+//check if error                
+                if(pro.get(t).peek().getSplice() < pro.get(t).peek().getRun())
+                {
+                    //doing work boi
+                    num += pro.get(t).peek().getSplice();
 
-                num += pro.get(t).peek().getSplice();
+                    //set left over runtime
+                    pro.get(t).peek().setRun(pro.get(t).peek().getRun() - pro.get(t).peek().getSplice());
+                }
+                else
+                {
+                    //doing work boi
+                    num += pro.get(t).peek().getRun();
 
-                //set left over runtime
-                pro.get(t).peek().setRun(pro.get(t).peek().getRun() - pro.get(t).peek().getSplice());
+                    //setting left over runtime
+                    pro.get(t).peek().setRun(0);
+                }
 
                 //setting total runtime
                 pro.get(t).peek().setTr(num - pro.get(t).peek().getArrival());
 
-                //push to next priority queue or deletes
+                //if shit goes wrong check arrival setting times and shiz
 
-                //this might cause bugs
-                //uskjsgfdkhjsdfgkhjsfdgkhjsdfgkhsdfgkhjsdfgkhsdfghkdfgshjksdfgkhjfsdgkhjsdfghkjfdsghkjfgsdkhj
-                if(pro.get(t).peek().getRun() <= 0)
+                //arrivals
+                if(jro.size() != 0)
                 {
-                    for(int f = 0; f <= pro.size()-1; f++)
-                    {   
-                        //has finished execution so push out of ready que into finished que
-                        if(pro.get(f).getRun() == 0)
+                    for(int e = 0; e <= jro.size()-1; e++)
+                    {
+                        if(jro.get(e).getArrival() <= num)
                         {
-                            //push process to the back of the Queue
-                            bro.add(pro.get(f));
-                            //remove process from Queue
-                            pro.remove(f);
+                            pro.get(0).add(jro.get(e));
+                            jro.remove(e);
                         }
                     }
                 }
-                //not finished pushes to next priority queue
+                
+                //5
+                if(t==5)
+                {
+                    //this might cause bugs
+                    if(pro.get(t).peek().getRun() == 0)
+                    {
+                        //adds to bro and deletes from queue
+                        bro.add(pro.get(t).poll());
+                        
+                    }
+                    //not finished pushes to back of queue
+                    else
+                    {
+                        pro.get(t).add(pro.get(t).peek());
+                        pro.get(t).remove();
+                    }
+                }
+                //0-4
                 else
                 {
-                    //adds to next priority queue
-                    pro.get(t+1).add(pro.get(t).peek());
-                    //deletes from current priority queue
-                    pro.get(t).remove(pro.get(t).peek());   
+                    //push to next priority queue or deletes
+
+                    //this might cause bugs
+                    //process has finished
+                    if(pro.get(t).peek().getRun() <= 0)
+                    {
+                        //adds to bro and deletes from queue
+                        bro.add(pro.get(t).poll());
+                        
+                    }
+                    //not finished pushes to next priority queue
+                    else
+                    {
+                        //adds to next priority queue
+                        pro.get(t+1).add(pro.get(t).peek());
+                        //deletes from current priority queue
+                        pro.get(t).remove(pro.get(t).peek());   
+                    } 
                 }
+
+
+
+            }
+/*
+            //priority que 5 which is RR
+            if(t==5 && !pro.get(t).isEmpty())
+            {
+
+                num += dis;
+                //second time running
+                pro.get(t).peek().setWt((num - pro.get(t).peek().getArrival()) - (pro.get(t).peek().getExecute() - pro.get(t).peek().getRun()));
+
+                //simple printing
+                System.out.println("T" + num + ":" + pro.get(t).peek().getId());
+
+                //execute process
+                //Splice is smaller than run
+                if(pro.get(t).peek().getSplice() <= pro.get(t).peek().getRun())
+                {
+                    //doing work boi
+                    num += pro.get(t).peek().getSplice();
+
+                    //set left over runtime
+                    pro.get(t).peek().setRun(pro.get(t).peek().getRun() - pro.get(t).peek().getSplice());
+                }
+                else
+                {
+                    //doing work boi
+                    num += pro.get(t).peek().getRun();
+
+                    //setting left over runtime
+                    pro.get(t).peek().setRun(0);
+                }
+
+                //setting total runtime
+                pro.get(t).peek().setTr(num - pro.get(t).peek().getArrival());
+
 
                 //if shit goes wrong check arrival setting times and shiz
 
@@ -158,20 +248,30 @@ public class FB
                     }
                 }
 
+                //push to next priority queue or deletes
+
+                //this might cause bugs
+                if(pro.get(t).peek().getRun() <= 0)
+                {
+                    //adds to bro and deletes from queue
+                    bro.add(pro.get(t).poll());
+                    
+                }
+                //not finished pushes to back of queue
+                else
+                {
+                    pro.add(pro.get(0));
+                    pro.remove(pro.get(0));
+                }
+
             }
 
-            //priority que 5 which is RR
-            if(t==5 && !pro.get(t).isEmpty())
-            {
-                
-            }
-
-
+*/
             t++;
 
 
         }
-/*
+
         //sorting figure it out
         Comparator empNameComparator = Comparator.comparing(Process::getId);
         Collections.sort(bro, empNameComparator);
@@ -184,6 +284,6 @@ public class FB
         {
             System.out.println(bro.get(j).getId() + "       " + bro.get(j).getTr() + "                 " + bro.get(j).getWt());
         }
-*/
+
     }
 }
