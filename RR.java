@@ -45,10 +45,8 @@ public class RR
         int counter3 = jro.size()-1;
         int num = 0;
         int i = 0;
+        
         System.out.println("RR:");
-
-        System.out.println("size jro "+ jro.size());
-        System.out.println(jro.get(3).getArrival() + " "+jro.get(4).getArrival());
 //        //Arrivals
 //      ## be warned myself be careful when you set counters
         for(int t = 0; t <= counter1; t++)
@@ -58,7 +56,6 @@ public class RR
             {
                 pro.add(jro.get(0));
                 jro.remove(0);
-                System.out.println("Yeet "+ t);
             }
         }
 
