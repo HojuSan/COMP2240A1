@@ -118,8 +118,7 @@ public class FB
                 {
                     pro.get(t).peek().setWt((num - pro.get(t).peek().getArrival()) - (pro.get(t).peek().getExecute() - pro.get(t).peek().getRun()));
                 }
-
-                System.out.println("its in que inside if "+ t);               
+              
                 //simple printing
                 System.out.println("T" + num + ":" + pro.get(t).peek().getId());
 
@@ -145,7 +144,6 @@ public class FB
                 //setting total runtime
                 pro.get(t).peek().setTr(num - pro.get(t).peek().getArrival());
 
-                System.out.println("time before adding arrivals" + pro.get(t).peek().getTr());   
 
                 //if shit goes wrong check arrival setting times and shiz
 

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.LinkedList;
 import java.nio.file.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Test
@@ -39,42 +40,46 @@ public class Test
         rr = new RR();
         nrr = new NRR();
         fb = new FB();
-        List id = new LinkedList<String>();
-        List arrival = new LinkedList();
-        List execute = new LinkedList();
-        int dispatcher, counter = 0;
+        List<String> id = new LinkedList<String>();
+        List<Integer> arrival = new ArrayList<Integer>();
+        List<Integer> execute = new ArrayList<Integer>();
+        int dis=0, counter = 0;
         String data = readFileAsString("datafile1.txt");            // pulls data from input file and stores in String 'data'
         String[] parts = data.split("\\s+");              // splits data by word into an array
-
-        for(int t = 0; t <= parts.length;t++)
+        
+        for(int t = 0; t < parts.length;t++)
         {
-                if(parts[t] == "DISP:")
+                if(parts[t].equals("DISP:"))
                 {
-                    dispatcher = Integer.parseInt(parts[t+1]);    
+                    dis = Integer.parseInt(parts[t+1]);    
                 }
-                if(parts[t] == "ID:")
+                if(parts[t].equals("ID:"))
                 {
                         id.add(parts[t+1]);
                         counter++;
                 }
-                if(parts[t] == "Arrive:")
+                if(parts[t].equals("Arrive:"))
                 {
                         arrival.add(Integer.parseInt(parts[t+1]));
                 }
-                if(parts[t] == "ExecSize:")
+                if(parts[t].equals("ExecSize:"))
                 {
                         execute.add(Integer.parseInt(parts[t+1]));
                 }
         }
 
+        System.out.println("yeet2");
+        for(int i = 0; i < counter;i++)
+        {
+                System.out.println(execute.get(i));
+        }
 
-
-        fcfs.addDis(dispatcher);
-        rr.addDis(dispatcher);
-        fb.addDis(dispatcher);
-        nrr.addDis(dispatcher);
+        fcfs.addDis(dis);
+        rr.addDis(dis);
+        fb.addDis(dis);
+        nrr.addDis(dis);
         
-        for(int i = 0; i <= counter;i++)
+        for(int i = 0; i < counter;i++)
         {
                 fcfs.addProcess(id.get(i),arrival.get(i),execute.get(i));
                  rr.addProcess(id.get(i),arrival.get(i),execute.get(i));
@@ -86,7 +91,7 @@ public class Test
         rr.doStuff();
         fb.doStuff();
         nrr.doStuff();
-      
+     
 
     }//main
 
