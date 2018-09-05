@@ -44,6 +44,7 @@ public class Test
         List<Integer> arrival = new ArrayList<Integer>();
         List<Integer> execute = new ArrayList<Integer>();
         int dis=0, counter = 0;
+        
         String data = readFileAsString("datafile1.txt");            // pulls data from input file and stores in String 'data'
         String[] parts = data.split("\\s+");              // splits data by word into an array
         
@@ -68,11 +69,6 @@ public class Test
                 }
         }
 
-        System.out.println("yeet2");
-        for(int i = 0; i < counter;i++)
-        {
-                System.out.println(execute.get(i));
-        }
 
         fcfs.addDis(dis);
         rr.addDis(dis);
@@ -86,11 +82,22 @@ public class Test
                  fb.addProcess(id.get(i),arrival.get(i),execute.get(i));
                  nrr.addProcess(id.get(i),arrival.get(i),execute.get(i));
         }
-    
+        
         fcfs.doStuff();
+        System.out.println("  ");
         rr.doStuff();
+        System.out.println("  ");
         fb.doStuff();
+        System.out.println("  ");
         nrr.doStuff();
+        System.out.println("  ");
+
+        System.out.println("Algorithm       Average Turnaround Time   Average Waiting Time");
+        System.out.println("FCFS           "+String.format("%.2f", fcfs.aTR()));
+        System.out.println("RR             "+"");
+        System.out.println("FB  (constant) "+"");
+        System.out.println("NRR            "+"");
+        System.out.println("*  ");
      
 
     }//main

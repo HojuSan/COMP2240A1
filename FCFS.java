@@ -50,8 +50,20 @@ public class FCFS {
         System.out.println("Process Turnaround Time Waiting Time");
         for (int i = 0; i <= counter; i++)
         {
-            System.out.println(pro.get(i).getId() + "       " + pro.get(i).getTr() + "               " + pro.get(i).getWt());
+            System.out.println(pro.get(i).getId() + "      " + pro.get(i).getTr() + "              " + pro.get(i).getWt());
         }
+    }
+    public double aTR()
+    {
+        int counter = pro.size();
+        double ave = 0;
+        for (int i = 0; i < counter; i++)
+        {
+            System.out.println(pro.get(i).getTr());
+            ave += pro.get(i).getTr();
+        }
+        ave = ave/counter;
+        return ave;
     }
 
 }

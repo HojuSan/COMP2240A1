@@ -164,7 +164,7 @@ public class NRR
 
         for (int j = 0; j <= counter2; j++)
         {
-            System.out.println(bro.get(j).getId() + "       " + bro.get(j).getTr() + "                 " + bro.get(j).getWt());
+            System.out.println(bro.get(j).getId() + "      " + bro.get(j).getTr() + "              " + bro.get(j).getWt());
         }
 
     }
