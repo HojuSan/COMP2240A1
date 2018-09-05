@@ -1,4 +1,12 @@
-
+/* 
+Assignment 1
+Course:     COMP2240
+Author:     Juyong Kim
+Student No: c3244203
+Date:       09/08/18
+Description: Round Robin
+*/
+//Libraries
 import java.util.Comparator;
 import java.util.Collections;
 import java.util.List;
@@ -23,6 +31,7 @@ public class RR
         bro = new LinkedList<Process>();
     }
 
+    //Setting the process into a list
     public void addProcess(String id, int arrival, int execute)
     {
         Process tempPro = new Process();
@@ -33,11 +42,14 @@ public class RR
         jro.add(tempPro);
     }
 
+    //sets dispatcher value
     public void addDis(int num)
     {
         dis = num;
     }
 
+    //bit of a mess
+    //both does all the calculations and prints out the values
     public void doStuff()
     {
         int counter1 = jro.size()-1;
@@ -164,6 +176,7 @@ public class RR
 
     }
 
+    //calculates average turnaround time
     public double aTR()
     {
         int counter = bro.size();
@@ -176,6 +189,7 @@ public class RR
         return ave;
     }
 
+    //calculates average waiting time
     public double aWT()
     {
         int counter = bro.size();

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class Test
+public class c3244203A1
 {
     //variables
     private static FCFS fcfs;

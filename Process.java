@@ -1,5 +1,6 @@
-/*.java 
+/* 
 Assignment 1
+Course:     COMP2240
 Author:     Juyong Kim
 Student No: c3244203
 Date:       09/08/18
@@ -77,7 +78,6 @@ public class Process  //implements Comparable<Process>
     public void setArrival(int arrival) 
     {
         this.arrival = arrival; 
-//        setComparator(arrival);
     }
     //special since the actual execution time
     //and how much is left is different
@@ -106,34 +106,4 @@ public class Process  //implements Comparable<Process>
     {
         this.run = run;
     }
- /*   
-    public int getComparator()
-    {
-        return comparator;
-    }
-
-    
-    public int compareTo(Process p1)
-    {
-        if (p1.getComparator < this.comparator)
-        {
-            return 1;
-        }
-        else if (p1.getComparator() ==  this.comparator)
-        {
-            if(p1.getId().compareTo(this.id)<0)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-        else
-        {
-            return -1;
-        }
-    }
-*/
 }
