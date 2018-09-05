@@ -45,7 +45,7 @@ public class Test
         List<Integer> execute = new ArrayList<Integer>();
         int dis=0, counter = 0;
         
-        String data = readFileAsString("datafile1.txt");            // pulls data from input file and stores in String 'data'
+        String data = readFileAsString("datafile2.txt");            // pulls data from input file and stores in String 'data'
         String[] parts = data.split("\\s+");              // splits data by word into an array
         
         for(int t = 0; t < parts.length;t++)
@@ -93,10 +93,10 @@ public class Test
         System.out.println("  ");
 
         System.out.println("Algorithm       Average Turnaround Time   Average Waiting Time");
-        System.out.println("FCFS           "+String.format("%.2f", fcfs.aTR()));
-        System.out.println("RR             "+"");
-        System.out.println("FB  (constant) "+"");
-        System.out.println("NRR            "+"");
+        System.out.println("FCFS            "+String.format("%.2f", fcfs.aTR())+"                     "+String.format("%.2f", fcfs.aWT()));
+        System.out.println("RR              "+String.format("%.2f", rr.aTR())+"                     "+String.format("%.2f", rr.aWT()));
+        System.out.println("FB  (constant)  "+String.format("%.2f", fb.aTR())+"                     "+String.format("%.2f", fb.aWT()));
+        System.out.println("NRR             "+String.format("%.2f", nrr.aTR())+"                     "+String.format("%.2f", nrr.aWT()));
         System.out.println("*  ");
      
 

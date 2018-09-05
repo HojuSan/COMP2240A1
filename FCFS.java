@@ -36,12 +36,12 @@ public class FCFS {
         for (int i = 0; i <= counter; i++)
         {
             num += dis;
-            pro.get(i).setWt(num);
+            pro.get(i).setWt(num - pro.get(i).getArrival());
 
             System.out.println("T" + num + ":" + pro.get(i).getId());
 
             num += pro.get(i).getExecute();
-            pro.get(i).setTr(num);
+            pro.get(i).setTr(num- pro.get(i).getArrival());
        
         }
 
@@ -59,8 +59,19 @@ public class FCFS {
         double ave = 0;
         for (int i = 0; i < counter; i++)
         {
-            System.out.println(pro.get(i).getTr());
             ave += pro.get(i).getTr();
+        }
+        ave = ave/counter;
+        return ave;
+    }
+
+    public double aWT()
+    {
+        int counter = pro.size();
+        double ave = 0;
+        for (int i = 0; i < counter; i++)
+        {
+            ave += pro.get(i).getWt();
         }
         ave = ave/counter;
         return ave;

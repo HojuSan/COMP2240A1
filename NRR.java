@@ -168,5 +168,29 @@ public class NRR
         }
 
     }
+
+    public double aTR()
+    {
+        int counter = bro.size();
+        double ave = 0;
+        for (int i = 0; i < counter; i++)
+        {
+            ave += bro.get(i).getTr();
+        }
+        ave = ave/counter;
+        return ave;
+    }
+
+    public double aWT()
+    {
+        int counter = bro.size();
+        double ave = 0;
+        for (int i = 0; i < counter; i++)
+        {
+            ave += bro.get(i).getWt();
+        }
+        ave = ave/counter;
+        return ave;
+    }
     
 }
