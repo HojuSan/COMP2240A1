@@ -86,20 +86,23 @@ public class FB
         //Runs while both que is not empty
         while (bro.size() < counterblah)
         {
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////here            
-            //checks first priority queue if its empty
-            //or reached end of the list but processes haven't finished
-            for(int re = 0; re <= t; re++)
+            if(bro.size() < counterblah)
             {
-                if(!pro.get(0).isEmpty() || (t==5 && bro.size() < counterblah))
-                {
-                    t = 0;
-                    break;
-                }               
-                
+                t = 0;
             }
-
-
+            for(int re = t;re <= 6; re++)
+            {
+                if (pro.get(re).isEmpty())
+                {
+                    t++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            
+        
             //if the queue is not empty go through it
             if (!pro.get(t).isEmpty())
             {
@@ -116,13 +119,12 @@ public class FB
                     pro.get(t).peek().setWt((num - pro.get(t).peek().getArrival()) - (pro.get(t).peek().getExecute() - pro.get(t).peek().getRun()));
                 }
 
-                System.out.println("its in que "+ t);               
+                System.out.println("its in que inside if "+ t);               
                 //simple printing
                 System.out.println("T" + num + ":" + pro.get(t).peek().getId());
 
                 //execute process
                 //Splice is smaller than run
-//check if error                
                 if(pro.get(t).peek().getSplice() < pro.get(t).peek().getRun())
                 {
                     //doing work boi
@@ -142,6 +144,8 @@ public class FB
 
                 //setting total runtime
                 pro.get(t).peek().setTr(num - pro.get(t).peek().getArrival());
+
+                System.out.println("time before adding arrivals" + pro.get(t).peek().getTr());   
 
                 //if shit goes wrong check arrival setting times and shiz
 
@@ -198,77 +202,9 @@ public class FB
                     } 
                 }
 
-
-
-            }
-/*
-            //priority que 5 which is RR
-            if(t==5 && !pro.get(t).isEmpty())
-            {
-
-                num += dis;
-                //second time running
-                pro.get(t).peek().setWt((num - pro.get(t).peek().getArrival()) - (pro.get(t).peek().getExecute() - pro.get(t).peek().getRun()));
-
-                //simple printing
-                System.out.println("T" + num + ":" + pro.get(t).peek().getId());
-
-                //execute process
-                //Splice is smaller than run
-                if(pro.get(t).peek().getSplice() <= pro.get(t).peek().getRun())
-                {
-                    //doing work boi
-                    num += pro.get(t).peek().getSplice();
-
-                    //set left over runtime
-                    pro.get(t).peek().setRun(pro.get(t).peek().getRun() - pro.get(t).peek().getSplice());
-                }
-                else
-                {
-                    //doing work boi
-                    num += pro.get(t).peek().getRun();
-
-                    //setting left over runtime
-                    pro.get(t).peek().setRun(0);
-                }
-
-                //setting total runtime
-                pro.get(t).peek().setTr(num - pro.get(t).peek().getArrival());
-
-
-                //if shit goes wrong check arrival setting times and shiz
-
-                //arrivals
-                for(int e = 0; e <= jro.size()-1; e++)
-                {
-                    if(jro.get(e).getArrival() <= num)
-                    {
-                        pro.get(0).add(jro.get(e));
-                        jro.remove(e);
-                    }
-                }
-
-                //push to next priority queue or deletes
-
-                //this might cause bugs
-                if(pro.get(t).peek().getRun() <= 0)
-                {
-                    //adds to bro and deletes from queue
-                    bro.add(pro.get(t).poll());
-                    
-                }
-                //not finished pushes to back of queue
-                else
-                {
-                    pro.add(pro.get(0));
-                    pro.remove(pro.get(0));
-                }
-
             }
 
-*/
             t++;
-
 
         }
 

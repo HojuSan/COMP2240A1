@@ -4,6 +4,7 @@ Starting anew
 
 import java.util.List;
 import java.util.LinkedList;
+import java.nio.file.*;
 
 
 public class Test
@@ -28,7 +29,7 @@ public class Test
         fb.addProcess("p4",0,1);
         fb.addProcess("p5",0,5);
         fb.doStuff();
-/*
+
         fb.addDis(1);
         fb.addProcess("p1",0,10);
         fb.addProcess("p2",2,1);
@@ -36,7 +37,7 @@ public class Test
         fb.addProcess("p4",10,1);
         fb.addProcess("p5",14,5);
         fb.doStuff();       
-*/
+
 /*
         nrr.addDis(1);
         nrr.addProcess("p1",0,10);
