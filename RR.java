@@ -23,6 +23,7 @@ public class RR
     // constructor
     public RR() 
     {
+        //linkedlists of processes
         //ready que
         pro = new LinkedList<Process>();
         //job que(priority)
@@ -59,8 +60,9 @@ public class RR
         int i = 0;
         
         System.out.println("RR:");
-//        //Arrivals
-//      ## be warned myself be careful when you set counters
+
+        //Arrivals
+        //## be warned myself be careful when you set counters
         for(int t = 0; t <= counter1; t++)
         {
 
@@ -74,7 +76,7 @@ public class RR
         //Runs while both que is not empty
         while (!pro.isEmpty() || !jro.isEmpty())
         {
-
+            //Dispatcher
             num += dis;
 
             //Setting the Waiting time
@@ -83,13 +85,11 @@ public class RR
             {
                 //get starting wait time and additional waiting time
                 pro.get(0).setWt(num - pro.get(0).getArrival());
-                //System.out.println(pro.get(i).getWt() +"  waiting time of "+ pro.get(i).getId());
             }
             //second time running
             else
             {
                 pro.get(0).setWt((num - pro.get(0).getArrival()) - (pro.get(0).getExecute() - pro.get(0).getRun()));
-                //System.out.println(pro.get(i).getWt() +"  waiting time of "+ pro.get(i).getId());
             }
 
             //simple printing
@@ -128,7 +128,7 @@ public class RR
             pro.get(0).setTr(num - pro.get(0).getArrival());
 
 
-//            //Arrivals
+            //Arrivals
             for(int t = 0; t <= jro.size()-1; t++)
             {
                 if(jro.get(t).getArrival() <= num)
@@ -146,7 +146,7 @@ public class RR
                 pro.remove(pro.get(0));
             }
 
-                        //deletes finished processes
+            //deletes finished processes
             for(int f = 0; f <= pro.size()-1; f++)
             {   
                 //has finished execution so push out of ready que into finished que
@@ -161,7 +161,7 @@ public class RR
         
         }
 
-        //sorting figure it out
+        //sorting
         Comparator empNameComparator = Comparator.comparing(Process::getId);
         Collections.sort(bro, empNameComparator);
 
@@ -169,6 +169,7 @@ public class RR
 
         System.out.println("Process Turnaround Time Waiting Time");
 
+        //Printing
         for (int j = 0; j <= counter2; j++)
         {
             System.out.println(bro.get(j).getId() + "       " + bro.get(j).getTr() + "              " + bro.get(j).getWt());

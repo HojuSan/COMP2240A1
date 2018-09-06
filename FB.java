@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.stream.IntStream;
-
 import javax.lang.model.util.ElementScanner6;
 
 
@@ -24,7 +23,7 @@ public class FB
     private List<Process> bro,jro;
     //linkedlist of queues
     private List<Queue<Process>> pro;
-    private int dis,counterblah;
+    private int dis,primaryCounter;
     private int priNum = 6;
 
     // constructor
@@ -37,8 +36,9 @@ public class FB
         //finished que
         bro = new LinkedList<Process>();   
 
-        counterblah = 0;
+        primaryCounter = 0;
 
+        //for loop to create queues of processes in a linkedlist
         IntStream.rangeClosed(0, priNum).forEachOrdered(
             num -> {
                 pro.add(new LinkedList<Process>());
@@ -56,7 +56,7 @@ public class FB
         tempPro.setArrival(arrival);
         tempPro.setExecute(execute);
 
-        counterblah++;
+        primaryCounter++;
 
         jro.add(tempPro);
     }
@@ -96,9 +96,9 @@ public class FB
 
         //
         //Runs while both que is not empty
-        while (bro.size() < counterblah)
+        while (bro.size() < primaryCounter)
         {
-            if(bro.size() < counterblah)
+            if(bro.size() < primaryCounter)
             {
                 t = 0;
             }
@@ -172,7 +172,7 @@ public class FB
                     }
                 }
                 
-                //5
+                //que 5 which is RR
                 if(t==5)
                 {
                     //this might cause bugs
@@ -189,12 +189,10 @@ public class FB
                         pro.get(t).remove();
                     }
                 }
-                //0-4
+                //que 0-4 which is FCFS
                 else
                 {
                     //push to next priority queue or deletes
-
-                    //this might cause bugs
                     //process has finished
                     if(pro.get(t).peek().getRun() <= 0)
                     {
@@ -218,7 +216,7 @@ public class FB
 
         }
 
-        //sorting figure it out
+        //sorting 
         Comparator empNameComparator = Comparator.comparing(Process::getId);
         Collections.sort(bro, empNameComparator);
 

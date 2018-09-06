@@ -132,7 +132,7 @@ public class NRR
                 pro.get(0).setSplice(pro.get(0).getSplice()-1);
             }
 
-//            //Arrivals
+            //Arrivals
             for(int t = 0; t <= jro.size()-1; t++)
             {
                 if(jro.get(t).getArrival() <= num)
@@ -165,7 +165,7 @@ public class NRR
         
         }
 
-        //sorting figure it out
+        //sorting
         Comparator empNameComparator = Comparator.comparing(Process::getId);
         Collections.sort(bro, empNameComparator);
 
